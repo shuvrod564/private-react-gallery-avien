@@ -9,9 +9,9 @@ if (!process.env.DATABASE_URL) {
 
 export const db = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  // Aiven requires TLS. Set DATABASE_SSL=false to connect to a local
+  // PostgreSQL without SSL (e.g. tests / local dev instances).
+  ssl: process.env.DATABASE_SSL === 'false' ? false : { rejectUnauthorized: false },
   max: 5,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
