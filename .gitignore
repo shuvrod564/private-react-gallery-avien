@@ -9,6 +9,7 @@ dist-ssr/
 .env
 .env.local
 .env.*.local
+access.md
 certs/
 
 # Logs
